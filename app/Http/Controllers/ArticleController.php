@@ -3,9 +3,11 @@
 namespace App\Http\Controllers;
 
 use App\Article;
+use App\Category;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Str;
 use phpDocumentor\Reflection\Utils;
 
 class ArticleController extends Controller
@@ -17,7 +19,6 @@ class ArticleController extends Controller
      */
     public function index()
     {
-
         $articles = Article::when(isset(request()->search),function ($q){
             $search = request()->search;
             return $q->where("title","like","%$search%")->orwhere("description","like","%$search%");
@@ -50,7 +51,9 @@ class ArticleController extends Controller
         ]);
         $article = new Article();
         $article->title = $request->title;
+        $article->slug = Str::slug($request->title).'-'.uniqid();
         $article->category_id = $request->category;
+        $article->category_slug = Category::find($request->category)->slug;
         $article->user_id = Auth::user()->id;
         $article->description = $request->description;
         $article->save();
@@ -95,6 +98,7 @@ class ArticleController extends Controller
         ]);
 
         $article->title = $request->title;
+        $article->slug = Str::slug($request->title).'-'.uniqid();
         $article->category_id = $request->category;
         $article->description = $request->description;
         $article->update();

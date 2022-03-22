@@ -8,11 +8,11 @@
         <div class="card-body mb-3">
             <div class="title">
                 <h5 class="text-primary">
-                    <a href="{{ route('detail',$article->id) }}" class="fw-bold text-decoration-none">
+                    <a href="{{ route('detail',$article->slug) }}" class="fw-bold text-decoration-none">
                         {{ \Illuminate\Support\Str::words($article->title,10) }}
                     </a>
                 </h5>
-                <a class="badge rounded-pill bg-secondary text-dark text-decoration-none" href="{{ route('baseOnCategory',$article->category->id) }}">{{ $article->category->title  }}</a>
+                <a class="badge rounded-pill bg-secondary text-dark text-decoration-none" href="{{ route('baseOnCategory',$article->category->slug) }}">{{ $article->category->title  }}</a>
             </div>
             <div class="body my-4">
                 <p class="text-black-50">
@@ -32,7 +32,7 @@
                     </div>
                 </div>
                 <div class="">
-                    <a href="{{ route('detail',$article->id) }}" class="btn btn-outline-primary btn-sm rounded-pill text-nowrap">Read More</a>
+                    <a href="{{ route('detail',$article->slug) }}" class="btn btn-outline-primary btn-sm rounded-pill text-nowrap">Read More</a>
                 </div>
             </div>
         </div>
