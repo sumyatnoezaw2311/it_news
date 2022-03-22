@@ -1,0 +1,99 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@200;300;400;500;600;700;900&family=Padauk:wght@400;700&display=swap');
+$font-family-sans-serif: 'Montserrat', 'Padauk', sans-serif;
+$secondary : #cccccc;
+$nav-link-font-weight : bold;
+
+@import '~bootstrap5/scss/bootstrap';
+
+#pagination{
+    .page-item{
+        width: 35px;
+        height: 35px;
+        text-align: center;
+        padding: 0;
+        line-height: 35px;
+    }
+    .page-item.active .page-link{
+        border : 1px solid var(--bs-primary) !important;
+        background: transparent !important;
+        color: var(--bs-primary) !important;
+    }
+    .page-link{
+        padding: 0 !important;
+        border: none;
+        font-weight: bold;
+    }
+
+}
+ #search{
+        .search-box{
+            border : 1px solid var(--bs-primary);
+            border-radius: 2rem;
+            padding: 3px;
+        }
+        .search-input{
+            flex-grow: 1;
+            border: none !important;
+            box-sizing: border-box;
+            outline: none !important;
+            border-radius: 2rem;
+            padding-left: 20px;
+        }
+        .search-input:focus{
+            border: none !important;
+            outline: none !important;
+            box-shadow: none !important;
+        }
+
+        .search-btn{
+            border-radius: 2rem;
+            padding: 10px 25px;
+            /* height: 40px; */
+            /* line-height: 40px; */
+            background: var(--bs-primary);
+            color: #fff;
+            border: none;
+        }
+
+}
+
+.bodyDiv{
+    margin-top: 100px;
+}
+
+.navBar{
+    width: 100%;
+    position: fixed;
+    top: 0;
+    z-index: 100;
+}
+
+.categoryMenu{
+    position: sticky;
+    top: 80px;
+}
+
+.adminImg {
+    width: 40px;
+    height: 40px;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    margin-right: 5px;
+    border-radius: 50%;
+}
+
+
+.list-group-item{
+    border: none;
+}
+
+@media screen and (max-width: 480px) {
+            .btn,.small{
+            font-size: 0.7rem !important;
+        }
+
+}
+
+
+
