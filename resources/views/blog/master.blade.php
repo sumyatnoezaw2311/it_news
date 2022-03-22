@@ -29,10 +29,10 @@
                         <div class="collapse navbar-collapse justify-content-end" style="padding: 5px 24px;" id="navbarNavDropdown">
                             <ul class="navbar-nav">
                                 <li class="nav-item">
-                                    <a class="nav-link {{ request()->url() == route('index') ? 'active': '' }}" aria-current="page" href="{{ route('index') }}">Home</a>
+                                    <a class="nav-link {{ request()->url() == route('index') ? 'text-primary': '' }}" aria-current="page" href="{{ route('index') }}">Home</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link {{ request()->url() == route('about') ? 'active': '' }}" href="{{ route('about') }}">About</a>
+                                    <a class="nav-link {{ request()->url() == route('about') ? 'text-primary': '' }}" href="{{ route('about') }}">About</a>
                                 </li>
                                 <li class="nav-item dropdown">
                                     <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
@@ -82,7 +82,7 @@
                                 <div class="list-group border-0 mb-3">
                                     @foreach($categories as $category)
 
-                                        <a href="{{ route('baseOnCategory',$category->id) }}" class="my-1 border list-group-item list-group-item-action rounded-pill {{ request()->url() == route('baseOnCategory',$category->id) ? 'list-group-item-dark' : '' }}" aria-current="true">
+                                        <a href="{{ route('baseOnCategory',$category->slug) }}" class="my-1 border list-group-item list-group-item-action rounded-pill {{ request()->url() == route('baseOnCategory',$category->slug) ? 'list-group-item-dark' : '' }}" aria-current="true">
                                             {{ $category->title }}
                                         </a>
                                     @endforeach

@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Str;
 
 class CategoryController extends Controller
 {
@@ -18,8 +19,7 @@ class CategoryController extends Controller
      */
     public function index()
     {
-        $categories = Article::
-        get();
+        $categories = Category::get();
         return view('category.index',compact('categories'));
     }
 
@@ -46,6 +46,7 @@ class CategoryController extends Controller
         ]);
         $category = new Category();
         $category->title = $request->title;
+        $category->slug = Str::slug($request->title)."-".uniqid();
         $category->user_id = Auth::user()->id;
         $category->save();
         return redirect()->route("category.index")->with('addedCategoryStatus',$category->title.' has been added.');
@@ -86,6 +87,7 @@ class CategoryController extends Controller
             'title' => 'required|unique:categories,title,'.$category->id,
         ]);
         $category->title = $request->title;
+        $category->slug = Str::slug($request->title)."-".uniqid();
 
         $category->update();
 
