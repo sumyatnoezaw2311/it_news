@@ -16,7 +16,7 @@
             </div>
             <div class="body my-4">
                 <p class="text-black-50">
-                    {{ \Illuminate\Support\Str::words($article->description,15) }}
+                    {{ $article->excerpt }}
                 </p>
             </div>
             <div class="foot d-flex justify-content-between align-items-center">
