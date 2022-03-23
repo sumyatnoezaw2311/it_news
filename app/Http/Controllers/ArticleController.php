@@ -17,6 +17,9 @@ class ArticleController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    public function apiIndex(){
+        return Article::all();
+    }
     public function index()
     {
         $articles = Article::when(isset(request()->search),function ($q){
@@ -56,6 +59,7 @@ class ArticleController extends Controller
         $article->category_slug = Category::find($request->category)->slug;
         $article->user_id = Auth::user()->id;
         $article->description = $request->description;
+        $article->excerpt = Str::words($request->description,50);
         $article->save();
         return redirect()->route('article.index')->with('articleAddedStatus',"New article has been created.");
     }
@@ -96,11 +100,13 @@ class ArticleController extends Controller
             "title"=> "required|min:5|max:200",
             "description"=>"required|min:10",
         ]);
-
+        if($article->title != $request->title){
+            $article->slug = Str::slug($request->title).'-'.uniqid();
+        }
         $article->title = $request->title;
-        $article->slug = Str::slug($request->title).'-'.uniqid();
         $article->category_id = $request->category;
         $article->description = $request->description;
+        $article->excerpt = Str::words($request->description,50);
         $article->update();
         return redirect()->route('article.index')->with('articleUpdatedStatus',"Your article has been updated.");
     }
